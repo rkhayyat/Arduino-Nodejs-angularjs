@@ -1,0 +1,10 @@
+{
+  "name": "arduino-nodejs-J5-Angular",
+  "version": "1.0.0",
+  "description": "This app is to connect Arduino with nodejs socketio and Angularjs",
+  "dependencies": {
+    "express": "^4.13.4",
+    "johnny-five": "^0.9.49",
+    "socket.io": "^1.4.6"
+  }
+}

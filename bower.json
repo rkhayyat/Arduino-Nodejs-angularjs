@@ -1,0 +1,22 @@
+{
+  "name": "arduino-nodejs-angularjs",
+  "main": "index.js",
+  "version": "1.0.0",
+  "description": "This app is to connect arduino with nodejs and present parameters in real time",
+  "authors": [
+    "Rachid AL KAYAT"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.5.5",
+    "socket.io-client": "~1.4.6",
+    "angular-socket-io": "~0.7.0"
+  }
+}
