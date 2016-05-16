@@ -1,0 +1,147 @@
+<!DOCTYPE html>  
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->  
+<head>  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+ 
+  <title>CODETutorial Mean seed</title>
+</head>  
+<body>  
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
+  <script src="bower_components/angularjs/angular.js"></script>  
+  <script src="bower_components/angular-socket-io/socket.js"></script>
+  <script src="bower_components/d3/d3.js"></script>
+  <script src="bower_components/ngRadialGauge/src/ng-radial-gauge-dir.js"></script>
+
+<div class="container">
+<div class=row ng-controller="ArduController">
+    <div class="col-sm-4 col-sm-offset-3">
+        
+        <div >
+            <h2>Temperature Detector</h2>
+            <weather-icon cloudiness="{{ data.celsius }}"></weather-icon>
+            <h3>Current: {{ data.celsius | temp:2 }}</h3>
+            <div width="100%" ng-radial-gauge ranges="ranges" value="value" value-unit="unit"
+             precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit">
+             </div>
+        </div>     
+    </div>
+</div>
+    
+</div>
+ 
+   
+   <!--<button ng-click="ledOn()">On</button>
+    <button ng-click="ledOff()">Off</button>  -->
+
+  
+    
+  
+ 
+<script type="text/javascript">  
+    var app = angular.module('myApp', ['btford.socket-io','ngRadialGauge']);
+    
+    app.directive('weatherIcon', function() {
+    return {
+        restrict: 'E', replace: true,
+        scope: {
+            cloudiness: '@'
+        },
+        controller: function($scope) {
+            $scope.imgurl = function() {
+                var baseUrl = 'img/';
+                if ($scope.cloudiness < 10) {
+                    return baseUrl + 'cold.jpg';
+                } else if ($scope.cloudiness < 20) {
+                   return baseUrl + 'cool.jpg';
+                } else if ($scope.cloudiness < 30) {
+                   return baseUrl + 'warm.jpg';
+                } else if ($scope.cloudiness < 40) {
+                   return baseUrl + 'hot.jpg';
+                } 
+            };
+        },
+        template: '<div style="float:left"><img ng-src="{{ imgurl() }}"></div>'
+    };
+});
+
+  app.filter('temp', function($filter) {
+    return function(input, precision) {
+        if (!precision) {
+            precision = 1;
+        }
+        var numberFilter = $filter('number');
+        return numberFilter(input, precision) + '\u00B0C';
+    };
+});
+  
+    app.factory('mySocket', function (socketFactory) {
+        return socketFactory();
+    });
+    
+    
+    app.controller('ArduController', function ($scope,mySocket,$filter) {
+        
+        
+        
+        $scope.upperLimit = 40;
+        $scope.lowerLimit = -10;
+        $scope.unit = "\u00B0C";
+        $scope.precision = 2;
+        $scope.ranges = [
+            {
+                min: -10,
+                max: -1,
+                color: '#00008B'
+            },
+            {
+                min: 0,
+                max: 9,
+                color: '#ADD8E6'
+            },
+            {
+                min: 10,
+                max: 19,
+                color: '#8DCA2F'
+            },
+            {
+                min: 20,
+                max: 29,
+                color: '#FDC702'
+            },
+            {
+                min: 30,
+                max: 40,
+                color: '#FF7700'
+            }
+        ];
+        
+        
+        $scope.value = 0;
+       
+    
+      
+      mySocket.on('data', function (data) {
+        
+          $scope.data = data;
+          $scope.value = data.celsius;
+      });
+ 
+        $scope.ledOn = function () {
+ 
+            mySocket.emit('led:on');
+            console.log('LED ON');
+        };
+ 
+ 
+        $scope.ledOff = function () {
+ 
+            mySocket.emit('led:off');
+            console.log('LED OFF');  
+        };    
+});
+ 
+</script>  
+</body>
