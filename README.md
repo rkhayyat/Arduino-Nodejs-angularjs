@@ -15,7 +15,7 @@ The circuit is very simple, I used LM35 as temperature detector as shown in the 
 
 I also installed [Standara Firmata](http://www.instructables.com/id/Arduino-Installing-Standard-Firmata/). Firmata is a protocol (set of rules) for communicating with microcontrollers from software on a computer, smartphone, or tablet. Standard Firmata is a software library that allows Arduino devices to communicate with your computer using the Firmata protocol. 
 
-### NODEJS part:
+### NodeJS part:
 
 I used a javascript Platform named [johnny-five.io](http://johnny-five.io/), to achieve communication between arduino and nodejs.
 In this [connecting with LM35](http://johnny-five.io/examples/temperature-lm35/), you can see the subroutine to read temperature from LM35 connected with arduino.
@@ -26,6 +26,16 @@ both Johnny-five.io and socket.io are libraries that can be used in nodejs.
 
 
 **Important Note**: I tired **NODEJS 6.0.0** but it failed to initiate the communication with arduino.
+
+### AngularJS part:
+
+I used **AngularJS** and **client socketio** to present the data on the navigator in the realtime, I also used [ngRadialGauge](https://github.com/stherrienaspnet/ngRadialGauge). This radial gauge builded using D3.js JavaScript library is designed for Angular.js framework.
+
+
+Notify me about any bug or question feel free to contact me at my twitter [@rakhayyat](https://twitter.com/rakhayyat)
+
+
+
 
 
 
