@@ -1,6 +1,12 @@
 # arduino-nodejs-angularjs-socket.io3
+<p align="center">
+  <img src="http://cdn.socket.io/website/imgs/logo.svg" width="125"/>
+  <img src="http://johnny-five.io/img/j5-logo.svg" width="50"/>
+  <img src="http://training.figleaf.com/images/sec_logo_nodejs.jpg" width="50"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/50px-Arduino_Logo.svg.png" width="50"/>
+  <img src="http://www.nganimate.org/img/angular-logo.png" width="50"/>
+</p>
 
-![alt tag](http://cdn.socket.io/website/imgs/logo.svg) ![alt tag](http://johnny-five.io/img/j5-logo.svg) ![alt tag](http://training.figleaf.com/images/sec_logo_nodejs.jpg) ![alt tag](https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/50px-Arduino_Logo.svg.png) ![alt tag](http://www.nganimate.org/img/angular-logo.png)
 
 The idea from this project is to present the ability to use arduino board (UNO R3 in this example) as a data capture device (in our case reading temperature), then presenting the captrued data on PC.
 [demo](https://www.youtube.com/watch?v=IdU-cUy0SB0).
